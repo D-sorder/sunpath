@@ -78,7 +78,7 @@ body {
     &__close {
         position: absolute;
         right: 30px;
-        top: 0px;
+        top: 30px;
         width: 28px;
         height: 28px;
         &::before {
@@ -87,7 +87,8 @@ body {
             display: block;
             background-color: #fff;
             left: 0;
-            bottom: 0;
+            top: 50%;
+            transform: translateY(-50%);
             width: 28px;
             height: 2px;
             transform: rotate(-45deg);
@@ -97,8 +98,9 @@ body {
             position: absolute;
             display: block;
             background-color: #fff;
-            left: right;
-            bottom: 0;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
             width: 28px;
             height: 2px;
             transform: rotate(45deg);
@@ -515,6 +517,77 @@ body {
         font-size: 18px;
         font-weight: 700;
         line-height: 26px;
+    }
+    &__hidden {
+        position: fixed;
+        width: 800px;
+        bottom: -100%;
+        height: fit-content;
+        max-height: 80%;
+        left: 50%;
+        z-index: -999;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: all .6s ease;
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: rgba($color: #000000, $alpha: .7);
+            top: -1570%;
+            left: -70%;
+            width: 2200vw;
+            height: 2200vh;
+        }
+        &.active {
+            opacity: 1;
+            bottom: 25%;
+            z-index: 999;
+        }
+    }
+    &__close {
+        position: absolute;
+        cursor: pointer;
+        right: 30px;
+        top: 30px;
+        width: 28px;
+        height: 28px;
+        &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            background-color: #fff;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 2px;
+            transform: rotate(-45deg);
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            background-color: #fff;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 2px;
+            transform: rotate(45deg);
+        }
+    }
+    &__tile {
+        background-color: $supColor;
+        height: fit-content;
+        z-index: 22;
+        position: relative;
+        padding: 24px 20px;
+        width: 100%;
+        height: 100%;
+        & * {
+            color: #fff;
+        }
     }
 }
 
@@ -973,9 +1046,20 @@ body {
         font-size: 44px;
         line-height: 53px;
     }
+    .review__tile {
+        max-width: 600px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 @media (max-width: 480px) {
+    .review__tile {
+        max-width: 430px;
+        &::after {
+            right: -100%;
+        }
+    }
     .container {
         margin: 0 25px;
     }
